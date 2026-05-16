@@ -1,0 +1,48 @@
+import type { CountryOption } from "./types";
+
+/** Representative cities per country for global demo coverage */
+export const COUNTRIES: CountryOption[] = [
+  { code: "IN", name: "India", flag: "🇮🇳" },
+  { code: "US", name: "United States", flag: "🇺🇸" },
+  { code: "GB", name: "United Kingdom", flag: "🇬🇧" },
+  { code: "BR", name: "Brazil", flag: "🇧🇷" },
+  { code: "NG", name: "Nigeria", flag: "🇳🇬" },
+  { code: "KE", name: "Kenya", flag: "🇰🇪" },
+  { code: "BD", name: "Bangladesh", flag: "🇧🇩" },
+  { code: "PH", name: "Philippines", flag: "🇵🇭" },
+  { code: "ID", name: "Indonesia", flag: "🇮🇩" },
+  { code: "MX", name: "Mexico", flag: "🇲🇽" },
+  { code: "EG", name: "Egypt", flag: "🇪🇬" },
+  { code: "ZA", name: "South Africa", flag: "🇿🇦" },
+  { code: "JP", name: "Japan", flag: "🇯🇵" },
+  { code: "AU", name: "Australia", flag: "🇦🇺" },
+  { code: "DE", name: "Germany", flag: "🇩🇪" },
+  { code: "FR", name: "France", flag: "🇫🇷" },
+  { code: "CA", name: "Canada", flag: "🇨🇦" },
+  { code: "PK", name: "Pakistan", flag: "🇵🇰" },
+  { code: "ET", name: "Ethiopia", flag: "🇪🇹" },
+  { code: "CO", name: "Colombia", flag: "🇨🇴" },
+];
+
+export const CITY_BY_COUNTRY: Record<string, { city: string; lat: number; lon: number }> = {
+  IN: { city: "New Delhi", lat: 28.6139, lon: 77.209 },
+  US: { city: "Houston", lat: 29.7604, lon: -95.3698 },
+  GB: { city: "London", lat: 51.5074, lon: -0.1278 },
+  BR: { city: "São Paulo", lat: -23.5505, lon: -46.6333 },
+  NG: { city: "Lagos", lat: 6.5244, lon: 3.3792 },
+  KE: { city: "Nairobi", lat: -1.2921, lon: 36.8219 },
+  BD: { city: "Dhaka", lat: 23.8103, lon: 90.4125 },
+  PH: { city: "Manila", lat: 14.5995, lon: 120.9842 },
+  ID: { city: "Jakarta", lat: -6.2088, lon: 106.8456 },
+  MX: { city: "Mexico City", lat: 19.4326, lon: -99.1332 },
+  EG: { city: "Cairo", lat: 30.0444, lon: 31.2357 },
+  ZA: { city: "Johannesburg", lat: -26.2041, lon: 28.0473 },
+  JP: { city: "Tokyo", lat: 35.6762, lon: 139.6503 },
+  AU: { city: "Sydney", lat: -33.8688, lon: 151.2093 },
+  DE: { city: "Berlin", lat: 52.52, lon: 13.405 },
+  FR: { city: "Paris", lat: 48.8566, lon: 2.3522 },
+  CA: { city: "Toronto", lat: 43.6532, lon: -79.3832 },
+  PK: { city: "Karachi", lat: 24.8607, lon: 67.0011 },
+  ET: { city: "Addis Ababa", lat: 9.032, lon: 38.7469 },
+  CO: { city: "Bogotá", lat: 4.711, lon: -74.0721 },
+};
