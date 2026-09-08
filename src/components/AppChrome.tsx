@@ -20,7 +20,7 @@ export function AppChrome({ children }: { children: React.ReactNode }) {
   const consoleMode = isConsolePath(pathname);
 
   if (consoleMode) {
-    return <main className="min-h-screen bg-[#eef2f7]">{children}</main>;
+    return <main className="console-canvas min-h-screen">{children}</main>;
   }
 
   return (

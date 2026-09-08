@@ -10,7 +10,7 @@ type Props = {
   className?: string;
   /** Show expansion in parentheses after the short form */
   showExpansion?: boolean;
-  /** Tooltip colors for light pages vs dark console chrome */
+  /** Tooltip colors for light surfaces vs dark overlays */
   tone?: "onLight" | "onDark";
 };
 

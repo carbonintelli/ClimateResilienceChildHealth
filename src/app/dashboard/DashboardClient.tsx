@@ -261,7 +261,7 @@ export default function DashboardClient({
         </div>
       ) : null}
 
-      <div className="max-w-xl rounded-3xl border border-sky-100 bg-white p-6 shadow-lg">
+      <div className="max-w-xl rounded-2xl bg-white p-6 shadow-[0_1px_2px_rgba(15,23,42,0.04),0_8px_24px_rgba(15,23,42,0.04)] ring-1 ring-slate-200/70">
         <div
           role="tablist"
           aria-label="Location mode"
@@ -351,7 +351,7 @@ export default function DashboardClient({
           type="button"
           onClick={runAnalysis}
           disabled={loading || (mode === "anywhere" && !customPlace)}
-          className="mt-4 flex w-full items-center justify-center gap-2 rounded-2xl bg-ocean py-4 font-extrabold text-white shadow-md transition-colors hover:bg-sky-600 disabled:opacity-60"
+          className="mt-4 flex w-full items-center justify-center gap-2 rounded-xl bg-ocean py-3.5 font-extrabold text-white shadow-sm transition-[transform,background-color] duration-150 hover:bg-sky-600 active:scale-[0.99] disabled:opacity-55"
         >
           {loading ? (
             <>
