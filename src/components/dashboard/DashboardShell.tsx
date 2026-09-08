@@ -33,7 +33,7 @@ const GLOBAL_NAV: NavItem[] = [
     id: "chis",
     label: (
       <>
-        <Abbr of="CHIS" tone="onDark" /> index
+        <Abbr of="CHIS" /> index
       </>
     ),
     href: "/dashboard#high-risk",
@@ -68,13 +68,13 @@ function LiveClock() {
     ? now.toLocaleString(undefined, { dateStyle: "medium", timeStyle: "short" })
     : "Connecting…";
   return (
-    <div className="rounded-2xl border border-white/10 bg-white/5 p-3">
-      <p className="text-[10px] font-bold uppercase tracking-wider text-sky-200/80">
+    <div className="rounded-2xl border border-slate-200 bg-white p-3 shadow-sm">
+      <p className="text-[10px] font-bold uppercase tracking-wider text-ocean/80">
         Live updates
       </p>
-      <p className="mt-1 text-xs font-semibold text-white/90">{label}</p>
-      <p className="mt-2 inline-flex items-center gap-1.5 text-[11px] font-semibold text-emerald-300">
-        <span className="h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)]" />
+      <p className="mt-1 text-xs font-semibold text-ink/80">{label}</p>
+      <p className="mt-2 inline-flex items-center gap-1.5 text-[11px] font-semibold text-emerald-700">
+        <span className="h-2 w-2 rounded-full bg-emerald-500" />
         Online
       </p>
     </div>
@@ -132,13 +132,13 @@ export function DashboardShell({
 
   return (
     <div className="flex min-h-screen bg-[#eef2f7] text-ink">
-      <div className="fixed inset-x-0 top-0 z-40 flex items-center justify-between border-b border-slate-800 bg-[#0b1f3a] px-4 py-3 lg:hidden">
+      <div className="fixed inset-x-0 top-0 z-40 flex items-center justify-between border-b border-slate-200 bg-white px-4 py-3 lg:hidden">
         <Link href="/" className="inline-flex">
-          <Logo size={44} showText className="[&_.text-ink]:text-white" />
+          <Logo size={44} showText />
         </Link>
         <button
           type="button"
-          className="rounded-lg p-2 text-white hover:bg-white/10"
+          className="rounded-lg p-2 text-ink hover:bg-slate-100"
           aria-expanded={open}
           aria-controls="dashboard-sidebar"
           onClick={() => setOpen((v) => !v)}
@@ -150,23 +150,20 @@ export function DashboardShell({
 
       <aside
         id="dashboard-sidebar"
-        className={`fixed inset-y-0 left-0 z-50 flex w-64 flex-col bg-[#0b1f3a] text-white transition-transform lg:static lg:translate-x-0 ${
+        className={`fixed inset-y-0 left-0 z-50 flex w-64 flex-col border-r border-slate-200 bg-white text-ink shadow-sm transition-transform lg:static lg:translate-x-0 ${
           open ? "translate-x-0" : "-translate-x-full"
         }`}
       >
-        <div className="border-b border-white/10 px-4 py-5">
+        <div className="border-b border-slate-200 px-4 py-5">
           <Link
             href="/"
             className="flex flex-col items-start gap-2"
             onClick={() => setOpen(false)}
           >
-            <Logo size={64} showText className="[&_.text-ink]:text-white" />
-            <PoweredBySustainow
-              logoHeight={12}
-              className="pl-1 text-white/55 [&_span]:text-white/55"
-            />
+            <Logo size={64} showText />
+            <PoweredBySustainow logoHeight={12} className="pl-1" />
           </Link>
-          <p className="mt-4 text-[10px] font-bold uppercase tracking-[0.18em] text-sky-200/70">
+          <p className="mt-4 text-[10px] font-bold uppercase tracking-[0.18em] text-ocean/70">
             {variant === "india" ? "India console" : "Global console"}
           </p>
         </div>
@@ -182,8 +179,8 @@ export function DashboardShell({
                 onClick={() => setOpen(false)}
                 className={`flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-semibold transition-colors ${
                   active
-                    ? "bg-sky-500/25 text-white shadow-inner"
-                    : "text-white/70 hover:bg-white/5 hover:text-white"
+                    ? "bg-sky-100 text-ocean"
+                    : "text-ink/65 hover:bg-slate-50 hover:text-ink"
                 }`}
               >
                 <Icon className="h-4 w-4 shrink-0 opacity-90" />
@@ -193,12 +190,12 @@ export function DashboardShell({
           })}
         </nav>
 
-        <div className="space-y-3 border-t border-white/10 p-4">
+        <div className="space-y-3 border-t border-slate-200 p-4">
           <LiveClock />
           <Link
             href={variant === "india" ? "/dashboard" : "/india"}
             onClick={() => setOpen(false)}
-            className="block rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-center text-xs font-bold text-sky-200 hover:bg-white/10"
+            className="block rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-center text-xs font-bold text-ocean hover:bg-sky-50"
           >
             {variant === "india" ? "Switch to Global" : "Switch to India"}
           </Link>
