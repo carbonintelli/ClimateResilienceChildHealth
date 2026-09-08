@@ -19,7 +19,7 @@ export const ACRONYMS: Record<string, AcronymEntry> = {
     short: "CHIS",
     expansion: "Child Health Impact Score",
     explanation:
-      "A 0–100 score of climate-related health burden for children. Higher means greater concern across heat, air, waterborne disease, vectors, and nutrition.",
+      "A 0–100 child climate-health score. Analyze/report views use burden polarity (higher = more concern). Overview maps show wellbeing (100 − burden; higher = healthier).",
     group: "score",
   },
   CHVI: {

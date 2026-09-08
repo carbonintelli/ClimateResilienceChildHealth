@@ -4,6 +4,7 @@ import { useEffect, useId, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import type { AgeBand, SynthesisReport } from "@/lib/types";
+import { buildPlayPath } from "@/lib/share-links";
 import { AGE_PROFILES } from "@/lib/gamification";
 import { AGE_BAND_VISUALS } from "@/lib/age-band-visuals";
 import { RiskBadge } from "./RiskBadge";
@@ -609,7 +610,11 @@ function GuidanceTab({ report }: { report: SynthesisReport }) {
           </p>
         </div>
         <Link
-          href="/play"
+          href={buildPlayPath({
+            countryCode: report.location.countryCode,
+            regionId: report.indiaRegional?.regionId,
+            ageBand: activeAge,
+          })}
           className="inline-flex items-center gap-2 rounded-full bg-leaf px-4 py-2 text-sm font-bold text-white hover:opacity-90"
         >
           <Gamepad2 className="h-4 w-4" />

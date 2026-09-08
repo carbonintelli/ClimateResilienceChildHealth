@@ -233,14 +233,17 @@ export function DashboardShell({
               <p className="mt-1 text-sm text-ink/60">
                 {variant === "india" ? (
                   <>
-                    Climate-health intelligence for Indian regions —{" "}
-                    <Abbr of="CHIS" showExpansion /> tracks child climate-health
-                    burden (0–100).
+                    Climate-health intelligence for Indian regions. Overview
+                    maps show <Abbr of="CHIS" showExpansion /> wellbeing
+                    (higher = healthier); Analyze reports show burden (higher =
+                    more concern).
                   </>
                 ) : (
                   <>
-                    Real-time climate-health intelligence for children. Scores
-                    use <Abbr of="CHIS" showExpansion /> where available.
+                    Real-time climate-health intelligence for children.
+                    Overview maps show <Abbr of="CHIS" showExpansion />{" "}
+                    wellbeing (higher = healthier); Analyze reports use burden
+                    (higher = more concern).
                   </>
                 )}
               </p>

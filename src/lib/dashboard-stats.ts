@@ -157,7 +157,7 @@ export function getGlobalOverview() {
     if (!sample) return [];
     return [
       {
-        id: r.id,
+        id: `${r.id}-${sample.id}`,
         name: r.name,
         chis: r.chis,
         band: r.band,

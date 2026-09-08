@@ -3,16 +3,10 @@
 import { useState } from "react";
 import { Check, Link2, Share2 } from "lucide-react";
 import type { SynthesisReport } from "@/lib/types";
+import { buildReportSharePath } from "@/lib/share-links";
 
 function buildShareUrl(report: SynthesisReport): string {
-  const url = new URL("/dashboard", window.location.origin);
-  url.searchParams.set("mode", "custom");
-  url.searchParams.set("countryCode", report.location.countryCode);
-  url.searchParams.set("country", report.location.country);
-  url.searchParams.set("city", report.location.city);
-  url.searchParams.set("lat", String(report.location.lat));
-  url.searchParams.set("lon", String(report.location.lon));
-  return url.toString();
+  return new URL(buildReportSharePath(report), window.location.origin).toString();
 }
 
 function buildShareText(report: SynthesisReport): string {

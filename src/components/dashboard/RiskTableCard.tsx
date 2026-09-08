@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { ArrowDownRight, ArrowRight, ArrowUpRight } from "lucide-react";
 import { chisBandColor, type RegionRiskRow } from "@/lib/dashboard-stats";
 import { Abbr } from "@/components/Abbr";
@@ -30,12 +31,15 @@ export function RiskTableCard({
   rows,
   footerHref,
   footerLabel,
+  rowHref,
 }: {
   id: string;
   title: React.ReactNode;
   rows: RegionRiskRow[];
   footerHref?: string;
   footerLabel?: string;
+  /** Optional deep-link builder for each risk row */
+  rowHref?: (row: RegionRiskRow) => string | undefined;
 }) {
   return (
     <section
@@ -55,14 +59,30 @@ export function RiskTableCard({
             </tr>
           </thead>
           <tbody>
-            {rows.map((row) => (
+            {rows.map((row) => {
+              const href = rowHref?.(row);
+              return (
               <tr
                 key={row.id}
-                className="border-b border-slate-50 last:border-0"
+                className="border-b border-slate-50 transition-colors last:border-0 hover:bg-slate-50/80"
               >
                 <td className="py-3">
-                  <p className="font-bold text-ink">{row.name}</p>
-                  <p className="text-xs text-ink/50">{row.sublabel}</p>
+                  {href ? (
+                    <Link href={href} className="group block">
+                      <p className="font-bold text-ink group-hover:text-ocean">
+                        {row.name}
+                      </p>
+                      <p className="text-xs text-ink/50">{row.sublabel}</p>
+                      <p className="mt-0.5 text-[11px] font-semibold text-ocean/80">
+                        Open Analyze →
+                      </p>
+                    </Link>
+                  ) : (
+                    <>
+                      <p className="font-bold text-ink">{row.name}</p>
+                      <p className="text-xs text-ink/50">{row.sublabel}</p>
+                    </>
+                  )}
                 </td>
                 <td className="py-3">
                   <span
@@ -76,7 +96,8 @@ export function RiskTableCard({
                   <TrendIcon trend={row.trend} />
                 </td>
               </tr>
-            ))}
+            );
+            })}
           </tbody>
         </table>
       </div>

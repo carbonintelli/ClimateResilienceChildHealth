@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useCallback, useEffect, useMemo, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import type {
   AgeBand,
   ChildGuidance,
@@ -38,6 +39,7 @@ import {
 } from "lucide-react";
 
 export function KidsPlayHub() {
+  const searchParams = useSearchParams();
   const [ageBand, setAgeBand] = useState<AgeBand | null>(null);
   const [progress, setProgress] = useState(() =>
     ageBand ? loadProgress(ageBand) : null
@@ -53,6 +55,21 @@ export function KidsPlayHub() {
   const [celebrating, setCelebrating] = useState(false);
 
   const isIndia = countryCode === "IN";
+
+  // Prefill from Report → Play deep-link
+  useEffect(() => {
+    const code = searchParams.get("countryCode");
+    const nextCity = searchParams.get("cityId");
+    const nextRegion = searchParams.get("regionId");
+    const nextAge = searchParams.get("ageBand");
+    if (code) setCountryCode(code.toUpperCase());
+    if (nextCity) setCityId(nextCity);
+    if (nextRegion) setRegionId(nextRegion);
+    if (nextAge === "5-8" || nextAge === "9-12" || nextAge === "13-17") {
+      setAgeBand(nextAge);
+    }
+  }, [searchParams]);
+
   const citiesForCountry: CityPreset[] = useMemo(() => {
     return countries.find((c) => c.code === countryCode)?.cities ?? [];
   }, [countries, countryCode]);

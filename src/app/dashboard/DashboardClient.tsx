@@ -109,12 +109,15 @@ export default function DashboardClient({
       setReport(data as SynthesisReport);
 
       const url = new URL(window.location.href);
+      url.searchParams.set("view", "analyze");
       url.searchParams.set("mode", "custom");
       url.searchParams.set("countryCode", place.countryCode);
       url.searchParams.set("country", place.country);
       url.searchParams.set("city", place.name);
       url.searchParams.set("lat", String(place.lat));
       url.searchParams.set("lon", String(place.lon));
+      url.searchParams.delete("cityId");
+      url.searchParams.delete("regionId");
       router.replace(`${url.pathname}?${url.searchParams.toString()}`, {
         scroll: false,
       });
@@ -148,6 +151,7 @@ export default function DashboardClient({
       setReport(data as SynthesisReport);
 
       const url = new URL(window.location.href);
+      url.searchParams.set("view", "analyze");
       url.searchParams.set("mode", "curated");
       url.searchParams.set("countryCode", countryCode);
       if (isIndia) {
@@ -171,7 +175,7 @@ export default function DashboardClient({
     }
   }, [countryCode, isIndia, regionId, cityId, router]);
 
-  // Open shared / deep-linked location once
+  // Open shared / deep-linked location once (custom + curated auto-run)
   useEffect(() => {
     if (bootstrappedShare) return;
     const modeParam = searchParams.get("mode");
@@ -199,13 +203,52 @@ export default function DashboardClient({
       }
     }
     if (modeParam === "curated") {
-      const code = searchParams.get("countryCode");
+      const code = (searchParams.get("countryCode") || "").toUpperCase();
       const nextCity = searchParams.get("cityId");
       const nextRegion = searchParams.get("regionId");
-      if (code) setCountryCode(code.toUpperCase());
+      if (!code) {
+        setBootstrappedShare(true);
+        return;
+      }
+      setCountryCode(code);
       if (nextCity) setCityId(nextCity);
       if (nextRegion) setRegionId(nextRegion);
       setMode("curated");
+      setBootstrappedShare(true);
+
+      // Auto-run with URL values (avoid stale React state)
+      void (async () => {
+        setLoading(true);
+        setError(null);
+        setReport(null);
+        try {
+          const body: {
+            countryCode: string;
+            regionId?: string;
+            cityId?: string;
+          } = { countryCode: code };
+          if (code === "IN") {
+            body.regionId = nextRegion || "delhi-ncr";
+          } else if (nextCity) {
+            body.cityId = nextCity;
+          }
+          const res = await fetch("/api/analyze", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(body),
+          });
+          const data = await res.json();
+          if (!res.ok) {
+            throw new Error(data.message ?? data.error ?? "Analysis failed");
+          }
+          setReport(data as SynthesisReport);
+        } catch (e) {
+          setError(e instanceof Error ? e.message : "Unknown error");
+        } finally {
+          setLoading(false);
+        }
+      })();
+      return;
     }
     setBootstrappedShare(true);
   }, [bootstrappedShare, searchParams, runCustomAnalysis]);

@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense, useCallback, useState } from "react";
+import { Suspense, useCallback, useEffect, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import type { SynthesisReport } from "@/lib/types";
 import { INDIA_REGIONS } from "@/lib/india-regions";
@@ -43,6 +43,16 @@ function IndiaAnalyzePanel() {
       setLoading(false);
     }
   }, [regionId]);
+
+  // Deep-link auto-run when regionId is present in the URL
+  const didAutoRun = useRef(false);
+  useEffect(() => {
+    if (didAutoRun.current) return;
+    if (!regionFromUrl) return;
+    if (!INDIA_REGIONS.some((r) => r.id === regionFromUrl)) return;
+    didAutoRun.current = true;
+    void runAnalysis();
+  }, [regionFromUrl, runAnalysis]);
 
   return (
     <div className="space-y-6">

@@ -105,6 +105,9 @@ export function IndiaImpactPanel({ regional, impact }: Props) {
             <p className="mt-1 text-sm font-semibold text-ink/70">
               {impact.compositeLabel}
             </p>
+            <p className="mt-1 text-xs font-medium text-ink/55">
+              Burden polarity · higher = more child climate-health concern
+            </p>
           </div>
           <RiskBadge level={impact.risk} label={`Impact ${impact.risk}`} />
         </div>

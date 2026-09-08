@@ -49,9 +49,12 @@ function analyzeHref(mode: "global" | "india", point: MapPoint): string {
   const countryHint = point.name.includes(",")
     ? point.name.split(",").slice(1).join(",").trim()
     : undefined;
-  const codeFromId = point.id.includes("-")
-    ? point.id.split("-")[0]?.toUpperCase()
-    : undefined;
+  const rawId = point.id.trim();
+  const codeFromId = rawId.includes("-")
+    ? rawId.split("-")[0]?.toUpperCase()
+    : /^[A-Za-z]{2}$/.test(rawId)
+      ? rawId.toUpperCase()
+      : undefined;
   const params = new URLSearchParams({
     view: "analyze",
     mode: "custom",
