@@ -10,6 +10,10 @@
   --ink: #0f172a;
   --paper: #f8fafc;
   --card: #ffffff;
+  --console-canvas: #f3f6fb;
+  --console-surface: #ffffff;
+  --console-border: #e2e8f0;
+  --console-muted: #64748b;
 }
 
 @theme inline {
@@ -22,6 +26,10 @@
   --color-ink: var(--ink);
   --color-paper: var(--paper);
   --color-card: var(--card);
+  --color-console-canvas: var(--console-canvas);
+  --color-console-surface: var(--console-surface);
+  --color-console-border: var(--console-border);
+  --color-console-muted: var(--console-muted);
   --font-sans: var(--font-nunito);
 }
 
@@ -89,4 +97,38 @@ body {
 
 .game-badge-in {
   animation: game-badge-in 0.35s ease-out;
+}
+
+@keyframes console-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.console-fade-up {
+  animation: console-fade-up 0.4s ease-out both;
+}
+
+.console-fade-up-delay-1 {
+  animation-delay: 0.06s;
+}
+
+.console-fade-up-delay-2 {
+  animation-delay: 0.12s;
+}
+
+.console-fade-up-delay-3 {
+  animation-delay: 0.18s;
+}
+
+.console-canvas {
+  background:
+    radial-gradient(1200px 480px at 12% -10%, rgba(14, 165, 233, 0.08), transparent 55%),
+    radial-gradient(900px 420px at 100% 0%, rgba(74, 222, 128, 0.06), transparent 50%),
+    var(--console-canvas);
 }

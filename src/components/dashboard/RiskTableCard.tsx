@@ -1,6 +1,7 @@
 import { ArrowDownRight, ArrowRight, ArrowUpRight } from "lucide-react";
 import { chisBandColor, type RegionRiskRow } from "@/lib/dashboard-stats";
 import { Abbr } from "@/components/Abbr";
+import { Panel, PanelTitle } from "@/components/ui/console";
 
 function TrendIcon({ trend }: { trend: RegionRiskRow["trend"] }) {
   if (trend === "rising") {
@@ -38,11 +39,8 @@ export function RiskTableCard({
   footerLabel?: string;
 }) {
   return (
-    <section
-      id={id}
-      className="scroll-mt-24 rounded-2xl bg-white p-4 shadow-sm ring-1 ring-slate-200/80 sm:p-5"
-    >
-      <h2 className="text-lg font-extrabold text-ink">{title}</h2>
+    <Panel id={id}>
+      <PanelTitle>{title}</PanelTitle>
       <div className="mt-3 overflow-x-auto">
         <table className="w-full min-w-[320px] text-left text-sm">
           <thead>
@@ -58,7 +56,7 @@ export function RiskTableCard({
             {rows.map((row) => (
               <tr
                 key={row.id}
-                className="border-b border-slate-50 last:border-0"
+                className="border-b border-slate-50 last:border-0 transition-colors hover:bg-slate-50/80"
               >
                 <td className="py-3">
                   <p className="font-bold text-ink">{row.name}</p>
@@ -83,11 +81,11 @@ export function RiskTableCard({
       {footerHref && footerLabel ? (
         <a
           href={footerHref}
-          className="mt-3 inline-flex text-sm font-bold text-ocean hover:underline"
+          className="mt-4 inline-flex text-sm font-bold text-ocean transition-colors hover:text-sky-700"
         >
           {footerLabel}
         </a>
       ) : null}
-    </section>
+    </Panel>
   );
 }

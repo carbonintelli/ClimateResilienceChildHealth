@@ -1,3 +1,4 @@
+import { Panel, PanelTitle } from "@/components/ui/console";
 import type {
   AlertSlice,
   DimensionSlice,
@@ -76,11 +77,8 @@ export function AlertsDonutCard({
 }) {
   const total = slices.reduce((s, x) => s + x.count, 0);
   return (
-    <section
-      id={id}
-      className="scroll-mt-24 rounded-2xl bg-white p-4 shadow-sm ring-1 ring-slate-200/80 sm:p-5"
-    >
-      <h2 className="mb-4 text-lg font-extrabold text-ink">{title}</h2>
+    <Panel id={id}>
+      <PanelTitle className="mb-4">{title}</PanelTitle>
       <Donut
         slices={slices.map((s) => ({
           label: s.label,
@@ -90,7 +88,7 @@ export function AlertsDonutCard({
         centerLabel="Alerts"
         centerValue={String(total)}
       />
-    </section>
+    </Panel>
   );
 }
 
@@ -107,11 +105,8 @@ export function DimensionsDonutCard({
     slices.reduce((s, x) => s + x.score, 0) / Math.max(1, slices.length)
   );
   return (
-    <section
-      id={id}
-      className="scroll-mt-24 rounded-2xl bg-white p-4 shadow-sm ring-1 ring-slate-200/80 sm:p-5"
-    >
-      <h2 className="mb-4 text-lg font-extrabold text-ink">{title}</h2>
+    <Panel id={id}>
+      <PanelTitle className="mb-4">{title}</PanelTitle>
       <Donut
         slices={slices.map((s) => ({
           label: `${s.label} (${s.score})`,
@@ -121,7 +116,7 @@ export function DimensionsDonutCard({
         centerLabel="Avg"
         centerValue={String(avg)}
       />
-    </section>
+    </Panel>
   );
 }
 
@@ -153,11 +148,8 @@ export function TrendLineCard({
     .join(" ");
 
   return (
-    <section
-      id={id}
-      className="scroll-mt-24 rounded-2xl bg-white p-4 shadow-sm ring-1 ring-slate-200/80 sm:p-5"
-    >
-      <h2 className="mb-3 text-lg font-extrabold text-ink">{title}</h2>
+    <Panel id={id}>
+      <PanelTitle className="mb-4">{title}</PanelTitle>
       <svg
         viewBox={`0 0 ${width} ${height}`}
         className="h-auto w-full"
@@ -193,6 +185,6 @@ export function TrendLineCard({
           </g>
         ))}
       </svg>
-    </section>
+    </Panel>
   );
 }

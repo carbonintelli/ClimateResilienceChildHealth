@@ -124,7 +124,7 @@ export function ChisMapCard({
   return (
     <section
       id="chis-map"
-      className="scroll-mt-24 rounded-2xl bg-white p-4 shadow-sm ring-1 ring-slate-200/80 sm:p-5"
+      className="scroll-mt-24 rounded-2xl bg-white p-4 shadow-[0_1px_2px_rgba(15,23,42,0.04),0_8px_24px_rgba(15,23,42,0.04)] ring-1 ring-slate-200/70 sm:p-5"
     >
       <div className="mb-3 flex flex-wrap items-end justify-between gap-3">
         <div>
@@ -348,7 +348,7 @@ export function ChisMapCard({
           {selected ? (
             <Link
               href={analyzeHref(mode, selected)}
-              className="mt-4 inline-flex items-center justify-center rounded-full bg-ocean px-4 py-2.5 text-sm font-bold text-white hover:bg-sky-600"
+              className="mt-4 inline-flex items-center justify-center rounded-xl bg-ocean px-4 py-2.5 text-sm font-bold text-white shadow-sm transition-[transform,background-color] duration-150 hover:bg-sky-600 active:scale-[0.98]"
             >
               Run agents on this hub →
             </Link>

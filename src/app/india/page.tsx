@@ -46,7 +46,7 @@ function IndiaAnalyzePanel() {
 
   return (
     <div className="space-y-6">
-      <div className="rounded-2xl border border-amber-100 bg-white px-4 py-3 shadow-sm">
+      <div className="rounded-2xl bg-white px-4 py-3 shadow-[0_1px_2px_rgba(15,23,42,0.04),0_8px_24px_rgba(15,23,42,0.04)] ring-1 ring-slate-200/70">
         <h2 className="text-lg font-extrabold text-ink">Region analysis</h2>
         <p className="text-sm text-ink/60">
           Run India agents for one of {INDIA_REGIONS.length} regions and review
@@ -54,7 +54,7 @@ function IndiaAnalyzePanel() {
         </p>
       </div>
 
-      <div className="max-w-xl rounded-3xl border border-saffron/20 bg-white p-6 shadow-lg">
+      <div className="max-w-xl rounded-2xl bg-white p-6 shadow-[0_1px_2px_rgba(15,23,42,0.04),0_8px_24px_rgba(15,23,42,0.04)] ring-1 ring-slate-200/70">
         <IndiaRegionSelector
           regions={INDIA_REGIONS}
           value={regionId}
@@ -65,7 +65,7 @@ function IndiaAnalyzePanel() {
           type="button"
           onClick={runAnalysis}
           disabled={loading}
-          className="mt-4 flex w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-saffron to-ocean py-4 font-extrabold text-white shadow-md transition-opacity hover:opacity-90 disabled:opacity-60"
+          className="mt-4 flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-saffron to-ocean py-3.5 font-extrabold text-white shadow-sm transition-[transform,opacity] duration-150 hover:opacity-95 active:scale-[0.99] disabled:opacity-55"
         >
           {loading ? (
             <>
